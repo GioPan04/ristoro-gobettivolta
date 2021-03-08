@@ -1,0 +1,26 @@
+{
+  "name": "ristoro-gobettivolta-backend",
+  "version": "1.0.0",
+  "description": "Backend del sistema di ristoro della scuola P. Gobetti A. Volta",
+  "main": "dist/index.js",
+  "scripts": {
+    "watch": "ts-node-dev --respawn --transpile-only src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GioPan04/ristoro-gobettivolta.git"
+  },
+  "author": "Gioele Pannetto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GioPan04/ristoro-gobettivolta/issues"
+  },
+  "homepage": "https://github.com/GioPan04/ristoro-gobettivolta#readme",
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.6"
+  }
+}
