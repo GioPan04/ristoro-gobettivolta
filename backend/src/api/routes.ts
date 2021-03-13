@@ -21,6 +21,32 @@ router.get('/menu', async (req, res) => {
     });
 });
 
+router.post('/food', async (req, res) => {
+    const name: string = req.body.name;
+    const type = FoodType.sandwich;
+    const qty: number = req.body.quantity;
+    const desc: string = req.body.description;
+
+    if(
+        !name ||
+        !type ||
+        !qty
+    ) {
+        res.status(400).json({error: "Bad request"})
+        return;
+    }
+
+    let food = new Food();
+    food.name = name;
+    food.type = type;
+    food.qtyAvaible = qty;
+    food.description = desc;
+
+    await food.save();
+
+    res.status(201).json(food);
+});
+
 router.post('/register', async (req, res) => {
     // ONLY FOR DEV, DON'T USE IN PROD
     const email = req.body.email;
