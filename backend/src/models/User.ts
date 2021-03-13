@@ -2,8 +2,8 @@ import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "t
 import StudentsClass from "./Class";
 
 export enum UserType {
-    student,
-    prof
+    student = 'student',
+    prof = 'prof'
 }
 
 @Entity()
