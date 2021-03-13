@@ -10,3 +10,8 @@ Backend e Frontend del sistema di ristoro della scuola P. Gobetti A. Volta
 
 ### Documentazione
 La documentazione per le API, puó essere trovata [qui](backend/docs/API.md)
+
+## Frontend
+### Architettura
++ Linguaggio: [Dart](https://dart.dev/)
++ Framework: [Flutter](https://flutter.dev)
