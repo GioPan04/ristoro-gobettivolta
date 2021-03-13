@@ -1,9 +1,9 @@
-import { BaseEntity, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import Food from "./Food";
 import User from "./User";
 
 @Entity()
-export default class OrderedFood extends BaseEntity {
+export default class Ordered extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment')
     public id!: number;
@@ -13,4 +13,7 @@ export default class OrderedFood extends BaseEntity {
     
     @ManyToOne(type => User, user => user.id)
     public user!: User;
+
+    @CreateDateColumn({name: 'orderedAt', type: 'timestamp'})
+    public orderedAt!: Date;
 }

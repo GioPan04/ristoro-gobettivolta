@@ -1,7 +1,9 @@
 import express, { Router } from "express";
-import { MoreThan } from "typeorm";
+import { MoreThan, MoreThanOrEqual } from "typeorm";
 import StudentsClass from "../models/Class";
 import Food, { FoodType } from "../models/Food";
+import Order from "../models/Order";
+import Ordered from "../models/Order";
 import User, { UserType } from "../models/User";
 
 const router = Router();
@@ -40,7 +42,22 @@ router.post('/menu/:id/order', async (req, res) => {
 
     let order = await food.order(dummyUser);
 
-    res.json(order);
+    res.json({
+        orderId: order.id,
+        food
+    });
+})
+
+router.get('/orders', async (req, res) => {
+    const today = new Date(new Date().setHours(0, 0, 0));
+    const orders: Order[] = await Order.find({
+        relations: ['user', 'user.userClass', 'food'],
+        where: {
+            orderedAt: MoreThanOrEqual(today)
+        }
+    });
+
+    res.json(orders);
 })
 
 router.post('/food', async (req, res) => {
