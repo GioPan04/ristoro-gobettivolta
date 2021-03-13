@@ -11,7 +11,7 @@ export default class User extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment')
     public id!: number;
-    @Column()
+    @Column('varchar')
     public email!: string;
     @Column({type: 'enum', enum: UserType, default: UserType.student})
     public type!: UserType;

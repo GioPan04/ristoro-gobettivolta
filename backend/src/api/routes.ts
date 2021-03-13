@@ -3,8 +3,8 @@ import { MoreThan, MoreThanOrEqual } from "typeorm";
 import StudentsClass from "../models/Class";
 import Food, { FoodType } from "../models/Food";
 import Order from "../models/Order";
-import Ordered from "../models/Order";
 import User, { UserType } from "../models/User";
+import { authenticate } from "./AuthMiddleware";
 
 const router = Router();
 
@@ -23,7 +23,7 @@ router.get('/menu', async (req, res) => {
     });
 });
 
-router.post('/menu/:id/order', async (req, res) => {
+router.post('/menu/:id/order', authenticate, async (req, res) => {
     const food = await Food.findOne({
         where: {
             id: req.params.id
@@ -37,10 +37,8 @@ router.post('/menu/:id/order', async (req, res) => {
             email: "gioele@pannetto.com"
         }
     });
-    
-    if(!dummyUser) return res.status(404).json({error: "User cannot be found!"});
 
-    let order = await food.order(dummyUser);
+    let order = await food.order(req.user!);
 
     res.json({
         orderId: order.id,

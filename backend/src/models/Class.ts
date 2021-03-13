@@ -5,7 +5,7 @@ import User from "./User";
 export default class StudentsClass extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     public id!: number;
-    @Column({unique: true})
+    @Column({unique: true, type: 'varchar'})
     public name!: string;
     @OneToMany(type => User, user => user.userClass)
     public students!: User[]
