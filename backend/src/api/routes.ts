@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
 
     const studentClass = await StudentsClass.findOne({
         where: {
-            className,
+            name: className,
         }
     });
 
@@ -47,11 +47,24 @@ router.post('/newclass', async (req, res) => {
     const className = req.body.name;
 
     let studentClass = new StudentsClass();
-    studentClass.className = className;
+    studentClass.name = className;
 
     await studentClass.save();
 
     res.status(201).json(studentClass);
+});
+
+router.get('/classes/:id', async (req, res) => {
+    const studentClass = await StudentsClass.findOne({
+        relations: ['students'],
+        where: {
+            id: req.params.id,
+        },
+    });
+
+    if(!studentClass) return res.status(404).json({error: "Class not found!"});
+
+    res.json(studentClass);
 });
 
 export default router;
