@@ -1,5 +1,6 @@
 import { createConnection } from "typeorm";
 import StudentsClass from "./models/Class";
+import Food from "./models/Food";
 import User from "./models/User";
 
 export async function connect() {
@@ -28,6 +29,7 @@ export async function connect() {
         entities: [
             User,
             StudentsClass,
+            Food,
         ]
     });
 }

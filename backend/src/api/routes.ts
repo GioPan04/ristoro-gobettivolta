@@ -1,19 +1,20 @@
 import express, { Router } from "express";
+import { MoreThan } from "typeorm";
 import StudentsClass from "../models/Class";
-import { FoodType } from "../models/Food";
-import OrderableFood from "../models/OrderableFood";
+import Food, { FoodType } from "../models/Food";
 import User, { UserType } from "../models/User";
 
 const router = Router();
 
 router.use(express.json());
 
-router.get('/menu', (req, res) => {
+router.get('/menu', async (req, res) => {
     
-    const menu: OrderableFood[] = [
-        new OrderableFood("Salamella", FoodType.sandwich, 10),
-        new OrderableFood("Pepsi", FoodType.drink, 6)
-    ];
+    const menu = await Food.find({
+        where: {
+            qtyAvaible: MoreThan(0)
+        }
+    });
     
     res.json({
         menu
