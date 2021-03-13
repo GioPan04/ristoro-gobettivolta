@@ -21,6 +21,28 @@ router.get('/menu', async (req, res) => {
     });
 });
 
+router.post('/menu/:id/order', async (req, res) => {
+    const food = await Food.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+    if(!food) return res.status(404).json({error: "Food not found!"});
+    if(food.qtyAvaible < 1) return res.status(400).json({error: "No more quantity avaible"});
+
+    const dummyUser = await User.findOne({
+        where: {
+            email: "gioele@pannetto.com"
+        }
+    });
+    
+    if(!dummyUser) return res.status(404).json({error: "User cannot be found!"});
+
+    let order = await food.order(dummyUser);
+
+    res.json(order);
+})
+
 router.post('/food', async (req, res) => {
     const name: string = req.body.name;
     const type = FoodType.sandwich;

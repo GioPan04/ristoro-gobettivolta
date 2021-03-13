@@ -1,4 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import OrderedFood from "./OrderedFood";
+import User from "./User";
 
 export enum FoodType {
     drink = 'Bevanda',
@@ -22,4 +24,16 @@ export default class Food extends BaseEntity {
 
     @Column({type: 'varchar', length: 200, default: ''})
     public description!: string;
+
+    public async order(user: User): Promise<OrderedFood> {
+        this.qtyAvaible--;
+        await this.save();
+
+        let order = new OrderedFood();
+        order.food = this;
+        order.user = user;
+        await order.save();
+
+        return order;
+    }
 }
