@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import StudentsClass from "./Class";
 
 export enum UserType {
@@ -7,27 +7,15 @@ export enum UserType {
 }
 
 @Entity()
-export default class User {
+export default class User extends BaseEntity {
 
     @PrimaryGeneratedColumn('increment')
-    public id: number;
+    public id!: number;
     @Column()
-    public email: string;
+    public email!: string;
     @Column({type: 'enum', enum: UserType, default: UserType.student})
-    public type: UserType;
+    public type!: UserType;
     @ManyToOne(type => StudentsClass, studentClass => studentClass.students)
     public userClass?: StudentsClass;
-
-    constructor(
-        id: number,
-        email: string,
-        type: UserType,
-        userClass?: StudentsClass,
-    ) {
-        this.id = id;
-        this.email = email;
-        this.type = type;
-        this.userClass = userClass;
-    }
 
 }

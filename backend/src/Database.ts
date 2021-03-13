@@ -17,13 +17,14 @@ export async function connect() {
 
     console.log("Connecting to database...");
     await createConnection({
-        type: "mysql",
+        type: "mariadb",
         host: env.DATABASE_HOST,
         port: env.DATABASE_PORT,
         username: env.DATABASE_USER,
         password: env.DATABASE_PASSWORD,
         database: env.DATABASE_NAME,
         logging: 'all',
+        synchronize: true,
         entities: [
             User,
             StudentsClass,

@@ -1,22 +1,12 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import User from "./User";
 
 @Entity()
-export default class StudentsClass {
+export default class StudentsClass extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
-    public id: number;
+    public id!: number;
     @Column()
-    public className: string;
+    public className!: string;
     @OneToMany(type => User, user => user.userClass)
-    public students: User[]
-    
-    constructor(
-        id: number,
-        className: string,
-        students: User[],
-    ) {
-        this.students = students;
-        this.id = id;
-        this.className = className;
-    }
+    public students!: User[]
 }

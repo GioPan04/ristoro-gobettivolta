@@ -1,8 +1,12 @@
-import { Router } from "express";
+import express, { Router } from "express";
+import StudentsClass from "../models/Class";
 import { FoodType } from "../models/Food";
 import OrderableFood from "../models/OrderableFood";
+import User, { UserType } from "../models/User";
 
 const router = Router();
+
+router.use(express.json());
 
 router.get('/menu', (req, res) => {
     
@@ -16,5 +20,38 @@ router.get('/menu', (req, res) => {
     });
 });
 
+router.post('/register', async (req, res) => {
+    // ONLY FOR DEV, DON'T USE IN PROD
+    const email = req.body.email;
+    const className = req.body.class;
+
+    const studentClass = await StudentsClass.findOne({
+        where: {
+            className,
+        }
+    });
+
+    if(!studentClass) return res.status(404).json({error: "Class not found!"});
+
+    let user = new User();
+    user.email = email;
+    user.type = UserType.student;
+    user.userClass = studentClass;
+    await user.save();
+
+    return res.status(201).json(user);
+});
+
+router.post('/newclass', async (req, res) => {
+    // ONLY FOR DEV, DON'T USE IN PROD
+    const className = req.body.name;
+
+    let studentClass = new StudentsClass();
+    studentClass.className = className;
+
+    await studentClass.save();
+
+    res.status(201).json(studentClass);
+});
 
 export default router;
