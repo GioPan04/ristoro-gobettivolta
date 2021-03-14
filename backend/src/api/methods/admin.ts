@@ -62,7 +62,7 @@ router.post('/newclass', async (req, res) => {
 router.get('/classes/:id', async (req, res) => {
     const studentClass = await StudentsClass.findOne({
         relations: ['students'],
-        where: {
+        where: {    
             id: req.params.id,
         },
     });
