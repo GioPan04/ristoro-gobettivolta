@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/widgets/Food.dart';
 import '../provider/HomeProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if(menu == null) return Center(child: CircularProgressIndicator());
           return ListView.builder(
             itemCount: menu.length,
-            itemBuilder: (context, i) => Text(menu[i].name)
+            itemBuilder: (context, i) => Food(menu[i])
           );
         }
       ),
