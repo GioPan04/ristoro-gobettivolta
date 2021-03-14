@@ -12,7 +12,7 @@ class RistoroApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: "Ristoro Gobetti Volta",
-        theme: ThemeData(fontFamily: "Raleway"),
+        theme: ThemeData(fontFamily: "Raleway", primarySwatch: Colors.orange, appBarTheme: AppBarTheme(titleTextStyle: TextStyle(color: Colors.white))),
         routes: {
           '/': (context) => HomeScreen(),
         },

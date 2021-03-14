@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/models/Food.dart';
+import 'package:frontend/widgets/common/ImagedCard.dart';
 
 class Food extends StatelessWidget {
   
@@ -9,13 +10,25 @@ class Food extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return ImagedCard(
+      image: Image.network(data.imageUrl, fit: BoxFit.cover),
+      content: Text(data.name, style: Theme.of(context).textTheme.headline6),
+      action: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(data.name, style: Theme.of(context).textTheme.headline6,),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text("Rimanenti: ${data.quantityAvable}"),
+          ),
+          Spacer(),
+          TextButton.icon(
+            onPressed: () => {},
+            label: Text("Ordina"),
+            icon: Icon(Icons.add_shopping_cart),
+            style: ButtonStyle(),
+          )
         ],
-      ),
+      )
     );
   }
 }

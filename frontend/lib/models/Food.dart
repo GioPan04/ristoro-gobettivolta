@@ -4,11 +4,13 @@ class FoodModel {
   final FoodType type;
   final int quantityAvable;
   final String? description;
+  final String imageUrl;
 
   FoodModel({
     required this.id,
     required this.name,
     required this.quantityAvable,
+    required this.imageUrl,
     this.type = FoodType.sandwich,
     this.description
   });
@@ -17,7 +19,8 @@ class FoodModel {
     return FoodModel(
       id: data['id'] as int,
       name: data['name'] as String,
-      quantityAvable: data['qtyAvaible'] as int
+      quantityAvable: data['qtyAvaible'] as int,
+      imageUrl: data['imageUrl'] as String,
     );
   }
 }
