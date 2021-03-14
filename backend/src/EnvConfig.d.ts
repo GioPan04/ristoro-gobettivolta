@@ -9,5 +9,9 @@ declare namespace NodeJS {
 
         // jwt key
         JWT_KEY: string;
+
+        // Google OAuth
+        GOOGLE_OAUTH_CLIENT_ID: string;
+        GOOGLE_OAUTH_SECRET: string;
     }
 }

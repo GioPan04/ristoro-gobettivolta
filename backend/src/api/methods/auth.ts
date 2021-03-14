@@ -2,8 +2,10 @@ import { Router } from "express";
 import StudentsClass from "../../models/Class";
 import User, { UserType } from "../../models/User";
 import jwt from "jsonwebtoken";
+import GoogleOAuth from "../../utils/GoogleOAuth"
 
 const router = Router();
+const googleOAuth = new GoogleOAuth();
 
 router.post('/register', async (req, res) => {
     // ONLY FOR DEV, DON'T USE IN PROD
@@ -27,10 +29,11 @@ router.post('/register', async (req, res) => {
     return res.status(201).json(user);
 });
 
-router.post('/login', async (req, res) => {
-    // ONLY FOR DEV, DON'T USE IN PROD
+router.get('/login', async (req, res) => {
+    res.redirect(googleOAuth.oauthUrl);
+    /* // ONLY FOR DEV, DON'T USE IN PROD
     const email = req.body.email;
-    
+
     const user = await User.findOne({
         where: {
             email
@@ -44,7 +47,14 @@ router.post('/login', async (req, res) => {
     res.json({
         token,
         user
-    })
+    }) */
 });
+
+
+router.get('/googlecallback', async (req, res) => {
+    const code = req.query.code as string;
+    const http = await googleOAuth.getUserFromCallback(code);
+    res.json(http);
+})
 
 export default router;
