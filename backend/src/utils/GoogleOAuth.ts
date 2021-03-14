@@ -1,6 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import jwt from "jsonwebtoken";
 
+const authorizedIssuers = [
+    'https://accounts.google.com',
+    'https://www.accounts.google.com',
+];
+
 export default class GoogleOAuth {
 
     clientId: string;
@@ -34,7 +39,11 @@ export default class GoogleOAuth {
             grant_type: grantType,
         });
 
-        return this.parseHttpToIUser(res.data);
+        const payload = this.parseHttpToIUser(res.data);
+        if(!authorizedIssuers.includes(payload.issuer)) throw new Error(`Wrong jwt issuer google oauth: ${payload.issuer}`);
+        
+        // TODO: CHECK TOKEN WITH GOOGLE'S PUBLIC KEY
+        return payload;
     }
 
     private parseHttpToIUser(res: any): IGoogleUser {
@@ -46,7 +55,12 @@ export default class GoogleOAuth {
             issuer: payload.iss,
             hd: payload.hd,
             userId: payload.sub,
+            isStudent: this.getIsStudent(payload.hd),
         };
+    }
+
+    private getIsStudent(hd: string): boolean {
+        return hd.split('.')[0] == 'studenti';
     }
 }
 
@@ -56,4 +70,5 @@ export interface IGoogleUser {
     issuer: string;
     hd: string;
     userId: string;
+    isStudent: boolean;
 } 

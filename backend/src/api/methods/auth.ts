@@ -53,8 +53,11 @@ router.get('/login', async (req, res) => {
 
 router.get('/googlecallback', async (req, res) => {
     const code = req.query.code as string;
-    const http = await googleOAuth.getUserFromCallback(code);
-    res.json(http);
+    const googlePayload = await googleOAuth.getUserFromCallback(code);
+    console.log(googlePayload);
+    const user = await User.fromGoogleOAuth(googlePayload);
+
+    res.json(user);
 })
 
 export default router;
