@@ -24,6 +24,7 @@ router.post('/addFood', authenticate, async (req, res) => {
     const type = FoodType.sandwich;
     const qty: number = req.body.quantity;
     const desc: string = req.body.description;
+    const imageUrl: string = req.body.imageUrl;
 
     if(
         !name ||
@@ -39,6 +40,7 @@ router.post('/addFood', authenticate, async (req, res) => {
     food.type = type;
     food.qtyAvaible = qty;
     food.description = desc;
+    food.imageUrl = imageUrl;
 
     await food.save();
 

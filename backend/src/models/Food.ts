@@ -25,6 +25,9 @@ export default class Food extends BaseEntity {
     @Column({type: 'varchar', length: 200, default: ''})
     public description!: string;
 
+    @Column({type: 'varchar', length: 200, default: ''})
+    public imageUrl!: string;
+    
     public async order(user: User): Promise<Ordered> {
         this.qtyAvaible--;
         await this.save();
