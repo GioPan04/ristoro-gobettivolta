@@ -54,10 +54,12 @@ router.get('/login', async (req, res) => {
 router.get('/googlecallback', async (req, res) => {
     const code = req.query.code as string;
     const googlePayload = await googleOAuth.getUserFromCallback(code);
-    console.log(googlePayload);
     const user = await User.fromGoogleOAuth(googlePayload);
 
-    res.json(user);
+    const token = jwt.sign({userId: user.id}, process.env.JWT_KEY);
+
+    // Redirect the user to the app
+    res.redirect(302, `ristorogv://login?token=${token}`);
 })
 
 export default router;
