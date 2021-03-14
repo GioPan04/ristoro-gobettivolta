@@ -50,7 +50,7 @@ export default class GoogleOAuth {
         const payload = jwt.decode(res.id_token) as any;
         if(!payload) throw new Error("NULL JWT GOOGLE OAUTH TOKEN");
         return {
-            name: payload.name,
+            name: this.beautifyName(payload.name),
             email: payload.email,
             issuer: payload.iss,
             hd: payload.hd,
@@ -61,6 +61,12 @@ export default class GoogleOAuth {
 
     private getIsStudent(hd: string): boolean {
         return hd.split('.')[0] == 'studenti';
+    }
+
+    private beautifyName(name: string) {
+        name = name.toLowerCase();
+        // [ ciao ] => [ Ciao ]
+        return name.split(' ').map((namePart) => namePart[0].toUpperCase() + namePart.substring(1)).join(' ');
     }
 }
 

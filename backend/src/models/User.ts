@@ -13,6 +13,8 @@ export default class User extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     public id!: number;
     @Column('varchar')
+    public name?: string;
+    @Column('varchar')
     public email!: string;
     @Column('varchar', {nullable: true, unique: true})
     public googleId?: string;
@@ -33,6 +35,7 @@ export default class User extends BaseEntity {
         user.email = paylaod.email;
         user.googleId = paylaod.userId;
         user.type = paylaod.isStudent ? UserType.student : UserType.prof;
+        user.name = paylaod.name;
         await user.save();
 
         return user;
