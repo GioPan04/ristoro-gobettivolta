@@ -33,8 +33,8 @@ export default class GoogleOAuth {
 
         const res = await axios.post(tokenUrl, {
             code,
-            client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
-            client_secret: process.env.GOOGLE_OAUTH_SECRET,
+            client_id: this.clientId,
+            client_secret: this.clientSecret,
             redirect_uri: redirectUri,
             grant_type: grantType,
         });

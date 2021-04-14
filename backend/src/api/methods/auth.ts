@@ -3,6 +3,7 @@ import StudentsClass from "../../models/Class";
 import User, { UserType } from "../../models/User";
 import jwt from "jsonwebtoken";
 import GoogleOAuth from "../../utils/GoogleOAuth"
+import "express-async-errors";
 
 const router = Router();
 const googleOAuth = new GoogleOAuth();
