@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import '../../models/Failure.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as Path;
@@ -8,13 +10,13 @@ import 'Exceptions.dart';
 
 abstract class ApiExecutor {
 
-  bool get useHttps => false;
+  bool get useHttps => true;
   
   /// The base domain where request should be made
-  String get domain => 'linux300.pangio.lan:8080';
+  String get domain => kReleaseMode ? 'pangio.freemyip.com' : 'linux300.pangio.lan';
 
   /// The base path for api methods
-  String get apiPath => 'api';
+  String get apiPath => kReleaseMode ? 'api' : 'ristoro/api';
 
   /// You should override this method
   String get methodPath => '';
