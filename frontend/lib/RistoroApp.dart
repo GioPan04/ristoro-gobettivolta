@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/provider/CartProvider.dart';
 import 'package:frontend/provider/HomeProvider.dart';
+import 'package:frontend/screens/CartScreen.dart';
 import 'package:frontend/screens/HomeScreen.dart';
 import 'package:frontend/screens/LoginScreen.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class RistoroApp extends StatelessWidget {
         theme: ThemeData(fontFamily: "Raleway", primarySwatch: Colors.orange, appBarTheme: AppBarTheme(titleTextStyle: TextStyle(color: Colors.white))),
         routes: {
           '/': (context) => HomeScreen(),
+          '/cart': (context) => CartScreen(),
           'login': (context) => LoginScreen(),
         },
       ),

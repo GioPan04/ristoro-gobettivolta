@@ -36,14 +36,15 @@ class _HomeScreenState extends State<HomeScreen> {
           final menu = state.food;
           if(menu == null) return Center(child: CircularProgressIndicator());
           return ListView.builder(
+            padding: EdgeInsets.only(bottom: 80),
             itemCount: menu.length,
             itemBuilder: (context, i) => Food(menu[i], onOrderTapped: () => cart.addToCart(menu[i]))
           );
         }
       ),
-      floatingActionButton: cart.orders.isNotEmpty
+      floatingActionButton: cart.orders.isNotEmpty || true
         ? FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, '/cart'),
           tooltip: 'Vai al carrello',
           child: Icon(Icons.shopping_cart_outlined),
         )
