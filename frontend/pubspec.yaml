@@ -24,6 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  flutter_web_auth:
+    git:
+      url: git://github.com/nonameden/flutter_web_auth.git
+      ref: feature/nullsafety
   http: ^0.13.0
   provider: ^5.0.0
 
@@ -74,6 +78,5 @@ flutter:
           weight: 800
         - asset: fonts/Raleway/Raleway-Black.ttf
           weight: 900
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

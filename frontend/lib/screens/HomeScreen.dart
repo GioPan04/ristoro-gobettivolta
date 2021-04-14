@@ -25,6 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Ristoro Gobetti Volta"),
+        actions: [
+          IconButton(icon: Icon(Icons.ac_unit), onPressed: () => Navigator.pushNamed(context, 'login'))
+        ],
       ),
       body: Consumer<HomeProvider>(
         builder: (context, state, _) {

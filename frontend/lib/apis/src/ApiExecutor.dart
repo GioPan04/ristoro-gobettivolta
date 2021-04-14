@@ -10,13 +10,13 @@ import 'Exceptions.dart';
 
 abstract class ApiExecutor {
 
-  bool get useHttps => true;
+  bool get useHttps => false;
   
   /// The base domain where request should be made
-  String get domain => kReleaseMode ? 'pangio.freemyip.com' : 'linux300.pangio.lan';
+  String get domain => kReleaseMode ? 'pangio.freemyip.com' : 'linux300.pangio.lan:8080';
 
   /// The base path for api methods
-  String get apiPath => kReleaseMode ? 'api' : 'ristoro/api';
+  String get apiPath => kReleaseMode ? 'ristoro/api' : 'api';
 
   /// You should override this method
   String get methodPath => '';

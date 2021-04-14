@@ -67,6 +67,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_auth:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "feature/nullsafety"
+      resolved-ref: "3d1342b0994c98eccf8940cae82308e813115504"
+      url: "git://github.com/nonameden/flutter_web_auth.git"
+    source: git
+    version: "0.2.4"
   http:
     dependency: "direct main"
     description:
