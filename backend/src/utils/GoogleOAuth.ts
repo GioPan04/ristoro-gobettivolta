@@ -28,7 +28,7 @@ export default class GoogleOAuth {
 
     public async getUserFromCallback(code: string): Promise<IGoogleUser> {
         const tokenUrl = "https://oauth2.googleapis.com/token";
-        const redirectUri = "http://localhost:8080/api/auth/googlecallback";
+        const redirectUri = "https://pangio.freemyip.com/ristoro/api/auth/googlecallback";
         const grantType = "authorization_code";
 
         const res = await axios.post(tokenUrl, {
