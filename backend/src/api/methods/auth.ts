@@ -11,6 +11,7 @@ const googleOAuth = new GoogleOAuth();
 router.post('/register', async (req, res) => {
     // ONLY FOR DEV, DON'T USE IN PROD
     const email = req.body.email;
+    const name = req.body.name;
     const className = req.body.class;
 
     const studentClass = await StudentsClass.findOne({
@@ -22,6 +23,7 @@ router.post('/register', async (req, res) => {
     if(!studentClass) return res.status(404).json({error: "Class not found!"});
     
     let user = new User();
+    user.name = name;
     user.email = email;
     user.type = UserType.student;
     user.userClass = studentClass;
