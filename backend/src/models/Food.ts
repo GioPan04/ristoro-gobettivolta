@@ -28,6 +28,10 @@ export default class Food extends BaseEntity {
     @Column({type: 'varchar', length: 200, default: ''})
     public imageUrl!: string;
     
+    @Column({type: 'float', nullable: false})
+    public price!: number;
+
+    
     public async order(user: User): Promise<Ordered> {
         this.qtyAvaible--;
         await this.save();
