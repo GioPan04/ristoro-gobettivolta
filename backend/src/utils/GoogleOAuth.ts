@@ -22,7 +22,7 @@ export default class GoogleOAuth {
     public get oauthUrl() {
         const hd = "gobettivolta.edu.it";
         const scope = "https://www.googleapis.com/auth/userinfo.email";
-        const callbackUrl = "http://localhost:8080/api/auth/googlecallback";
+        const callbackUrl = "https://pangio.freemyip.com/ristoro/api/auth/callback";
         return `https://accounts.google.com/o/oauth2/v2/auth?scope=${scope}&access_type=offline&include_granted_scopes=true&response_type=code&state=state_parameter_passthrough_value&redirect_uri=${callbackUrl}&client_id=${process.env.GOOGLE_OAUTH_CLIENT_ID}&hd=${hd}`
     }
 
