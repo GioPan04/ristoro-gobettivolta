@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
         title: Text("Login"),
       ),
       body: Stack(
-        // alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         children: [
           Positioned(
             child: Text("Benvenuto!", style: Theme.of(context).textTheme.headline4, textAlign: TextAlign.center),
@@ -32,16 +32,18 @@ class LoginScreen extends StatelessWidget {
             left: 0,
             right: 0,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text("Effettua il login con il tuo account istituzionale per continuare.", textAlign: TextAlign.center),
-                SizedBox(height: 10),
-                ElevatedButton(onPressed: () => login(context), child: Text("ACCEDI")),
-              ],
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("Accedi con il tuo account istituzionale per continuare.", textAlign: TextAlign.center),
+                  SizedBox(height: 10),
+                  ElevatedButton(onPressed: () => login(context), child: Text("ACCEDI")),
+                ],
+              ),
             ),
           ),
         ],
