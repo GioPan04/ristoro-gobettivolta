@@ -25,10 +25,12 @@ router.post('/addFood', authenticate, async (req, res) => {
     const qty: number = req.body.quantity;
     const desc: string = req.body.description;
     const imageUrl: string = req.body.imageUrl;
+    const price: number = req.body.price;
 
     if(
         !name ||
         !type ||
+        !price||
         !qty
     ) {
         res.status(400).json({error: "Bad request"})
@@ -41,6 +43,7 @@ router.post('/addFood', authenticate, async (req, res) => {
     food.qtyAvaible = qty;
     food.description = desc;
     food.imageUrl = imageUrl;
+    food.price = price;
 
     await food.save();
 
