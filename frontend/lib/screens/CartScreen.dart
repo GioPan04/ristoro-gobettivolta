@@ -26,15 +26,24 @@ class CartScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: state.countedOrders.length,
             itemBuilder: (context, i) {
-              return ListTile(title: Text(state.countedOrders[i].food.name), trailing: Text('(${state.countedOrders[i].price}€) x${state.countedOrders[i].ammount}'),);
+              return ListTile(
+                title: Text(state.countedOrders[i].food.name),
+                trailing: Text('(${state.countedOrders[i].price}€) x${state.countedOrders[i].ammount}'),
+                leading: IconButton(
+                  icon: Icon(Icons.remove_circle_outline),
+                  onPressed: () => state.removeFromCart(state.countedOrders[i].food),
+                ),
+              );
             }
           );
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: Text('PAGA ${state.totalPrice.toStringAsFixed(2)}€'),
-      ),
+      floatingActionButton: state.orders.isNotEmpty 
+        ? FloatingActionButton.extended(
+          onPressed: () {},
+          label: Text('PAGA ${state.totalPrice.toStringAsFixed(2)}€'),
+        )
+        : null,
     );
   }
 }

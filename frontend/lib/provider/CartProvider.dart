@@ -35,6 +35,14 @@ class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
     notifyListeners();
   }
 
+  void removeFromCart(FoodModel model) {
+    int pos = _orders.indexWhere((element) => element.id == model.id);
+    _orders.removeAt(pos);
+    // Insertion sort
+    _orders.sort((a, b) => a.name.compareTo(b.name));
+    notifyListeners();
+  }
+
   // Useful for DevTools
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

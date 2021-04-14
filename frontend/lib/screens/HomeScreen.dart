@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         }
       ),
-      floatingActionButton: cart.orders.isNotEmpty || true
+      floatingActionButton: cart.orders.isNotEmpty
         ? FloatingActionButton(
           onPressed: () => Navigator.pushNamed(context, '/cart'),
           tooltip: 'Vai al carrello',
