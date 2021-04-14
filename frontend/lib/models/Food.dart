@@ -23,7 +23,7 @@ class FoodModel {
       name: data['name'] as String,
       quantityAvable: data['qtyAvaible'] as int,
       imageUrl: data['imageUrl'] as String,
-      price: (data['price'] as double?) ?? 0.0,
+      price: data['price'].toDouble() ?? 0.0,
     );
   }
 

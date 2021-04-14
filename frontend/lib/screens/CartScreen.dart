@@ -28,7 +28,7 @@ class CartScreen extends StatelessWidget {
             itemBuilder: (context, i) {
               return ListTile(
                 title: Text(state.countedOrders[i].food.name),
-                trailing: Text('(${state.countedOrders[i].price}€) x${state.countedOrders[i].ammount}'),
+                trailing: Text('x${state.countedOrders[i].ammount} (${state.countedOrders[i].price}€)'),
                 leading: IconButton(
                   icon: Icon(Icons.remove_circle_outline),
                   onPressed: () => state.removeFromCart(state.countedOrders[i].food),

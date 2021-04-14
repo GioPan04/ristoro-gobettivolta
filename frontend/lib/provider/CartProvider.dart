@@ -26,7 +26,7 @@ class CartProvider with ChangeNotifier, DiagnosticableTreeMixin {
     return result;
   }
 
-  double get totalPrice => _orders.fold<double>(0, (ammount, food) => ammount + food.id);
+  double get totalPrice => _orders.fold<double>(0, (ammount, food) => ammount + food.price);
 
   void addToCart(FoodModel food) {
     _orders.add(food);

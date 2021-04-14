@@ -13,7 +13,13 @@ class Food extends StatelessWidget {
   Widget build(BuildContext context) {
     return ImagedCard(
       image: Image.network(data.imageUrl, fit: BoxFit.cover),
-      content: Text(data.name, style: Theme.of(context).textTheme.headline6),
+      content: Row(
+        children: [
+          Text(data.name, style: Theme.of(context).textTheme.headline6),
+          Spacer(),
+          Text(data.price.toStringAsFixed(2) + '€', style: Theme.of(context).textTheme.headline6?.copyWith(fontSize: 17)),
+        ],
+      ),
       action: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
