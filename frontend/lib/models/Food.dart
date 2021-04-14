@@ -23,6 +23,9 @@ class FoodModel {
       imageUrl: data['imageUrl'] as String,
     );
   }
+
+  @override
+  String toString() => 'FoodModel(id: $id)';
 }
 
 enum FoodType {

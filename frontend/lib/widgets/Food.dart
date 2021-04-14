@@ -5,8 +5,9 @@ import 'package:frontend/widgets/common/ImagedCard.dart';
 class Food extends StatelessWidget {
   
   final FoodModel data;
+  final VoidCallback? onOrderTapped;
 
-  const Food(this.data, {Key? key}) : super(key: key);
+  const Food(this.data, {Key? key, this.onOrderTapped}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class Food extends StatelessWidget {
           ),
           Spacer(),
           TextButton.icon(
-            onPressed: () => {},
+            onPressed: () => onOrderTapped?.call(),
             label: Text("Ordina"),
             icon: Icon(Icons.add_shopping_cart),
             style: ButtonStyle(),

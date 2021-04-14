@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/provider/CartProvider.dart';
 import 'package:frontend/provider/HomeProvider.dart';
 import 'package:frontend/screens/HomeScreen.dart';
 import 'package:frontend/screens/LoginScreen.dart';
@@ -10,6 +11,7 @@ class RistoroApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<HomeProvider>(create: (context) => HomeProvider()),
+        ChangeNotifierProvider<CartProvider>(create: (context) => CartProvider()),
       ],
       child: MaterialApp(
         title: "Ristoro Gobetti Volta",
