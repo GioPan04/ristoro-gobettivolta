@@ -12,8 +12,8 @@ Backend e Frontend del sistema di ristoro della scuola P. Gobetti A. Volta
 Per configurare il backend esegui il file `./setup-backend.sh`, se dovesse dare un problema di permessi esegui prima `chmod +x setup-backend.sh` e riprova. 
 
 ### Documentazione
-La documentazione per le API, puó essere trovata [qui](backend/docs/API.md)
-La documentazione per l'autenticazione puó essere trovata [qui](backend/docs/AUTHENTICATION.md)
++ La documentazione per le API, puó essere trovata [qui](backend/docs/API.md)
++ La documentazione per l'autenticazione puó essere trovata [qui](backend/docs/AUTHENTICATION.md)
 
 ## Frontend
 ### Architettura
