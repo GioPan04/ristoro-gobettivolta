@@ -13,6 +13,7 @@ Per configurare il backend esegui il file `./setup-backend.sh`, se dovesse dare 
 
 ### Documentazione
 La documentazione per le API, puó essere trovata [qui](backend/docs/API.md)
+La documentazione per l'autenticazione puó essere trovata [qui](backend/docs/AUTHENTICATION.md)
 
 ## Frontend
 ### Architettura
