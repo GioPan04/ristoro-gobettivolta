@@ -29,6 +29,16 @@ class FoodModel {
 
   @override
   String toString() => 'FoodModel(id: $id)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+  
+    return other is FoodModel && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
 
 enum FoodType {

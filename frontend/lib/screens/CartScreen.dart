@@ -26,12 +26,17 @@ class CartScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: state.countedOrders.length,
             itemBuilder: (context, i) {
+              final data = state.countedOrders;
+              final food = data.keys.elementAt(i);
+              final ammount = data[food]!;
+              final price = food.price * ammount;
+
               return ListTile(
-                title: Text(state.countedOrders[i].food.name),
-                trailing: Text('x${state.countedOrders[i].ammount} (${state.countedOrders[i].price}€)'),
+                title: Text(food.name),
+                trailing: Text('x$ammount ($price€)'),
                 leading: IconButton(
                   icon: Icon(Icons.remove_circle_outline),
-                  onPressed: () => state.removeFromCart(state.countedOrders[i].food),
+                  onPressed: () => state.removeFromCart(food),
                 ),
               );
             }
